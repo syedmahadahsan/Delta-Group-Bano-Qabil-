@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Intermediate Topics</title>
+</head>
+<body>
+    <div id="main">
+        <h1>Intermediate Topics</h1>
+        <figure>
+            <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZ3JhbW1pbmd8ZW58MHx8MHx8fDA%3D" alt="">
+            <figcaption>An image showcasing a code snippet javascript DOM</figcaption>
+        </figure>
+        <br>
+        <h4>After the following tutorial, you will be able to use javascript in your web projects more effectively, undetstanding the use of Javascript in the world of websites</h4>
+        <hr>
+        <div id="content">
+            <div id="topics">
+                <h1>What is the DOM?</h1>
+                <p>The DOM is a Web API that allows developers to use programming logic to make changes to their HTML code. It's a reliable way to make changes that turn static websites into dynamic ones.
+
+                    It's an important topic in web development because the DOM serves as the initial use of JavaScript in the browser.
+                    
+                    HTML code isn’t considered part of the DOM until its parsed by the browser. To see what happens to your HTML code when this parsing happens, copy your code from the <strong>body</strong> tag and paste it here (within the box with the title 'Markup to test' after the three dots).
+                </p>
+                <fieldset disabled="disabled">
+                    <h2>PreRequisites</h2>
+                    In order to effectively understand the DOM and how it relates to working with the web, it is necessary to have an existing knowledge of HTML and CSS. It is also beneficial to have familiarity with fundamental JavaScript syntax and code structure.
+                </fieldset>
+            </div>
+            <hr>
+            <div id="topics">
+                <h1>Lesseon -1 </h1>
+                <p>At the most basic level, a website consists of an HTML document. The browser that you use to view the website is a program that interprets HTML and CSS and renders the style, content, and structure into the page that you see.
+                In addition to parsing the style and structure of the HTML and CSS, the browser creates a representation of the document known as the Document Object Model. This model allows JavaScript to access the text content and elements of the website document as objects.
+                JavaScript is an interactive language, and it is easier to understand new concepts by doing. Let's create a very basic website. Create an index.html file and save it in a new project directory.
+                </p>   
+                <pre>
+                    <code>
+                        &lt;!DOCTYPE html&gt;
+                        &lt;html lang="en"&gt;
+                    
+                            &lt;head&gt;
+                            &lt;title&gt;Learning the DOM&lt;/title&gt;
+                            &lt;/head&gt;
+                    
+                            &lt;body&gt;
+                            &lt;h1&gt;Document Object Model&lt;/h1&gt;
+                            &lt;/body&gt;
+                    
+                        &lt;/html&gt;
+                    </code>
+                </pre>
+                <p>This code is the familiar HTML source of a new website skeleton. It contains the absolute most essential aspects of a website document — a doctype, and an html tag with the head and body nested inside.
+                </p>
+                <p>For our purposes, we'll be using the Chrome browser, but you can receive similar output from other modern browser. Within Chrome, open up index.html. You'll see a plain website with our heading saying “Document Object Model”. Right click anywhere on the page and select “Inspect”. This will open up Developer Tools.</p>
+                <br>
+                <h3>Under the Elements tab, you'll see the DOM.</h3>
+                <img src="./images/the-dom.png" alt="">
+                <br><br>
+                <h2>The Document Object</h2>
+                <p>The document object is a built-in object that has many properties and methods that we can use to access and modify websites. In order to understand how to work with the DOM, you must understand how objects work in JavaScript. Review Understanding Objects in JavaScript if you don't feel comfortable with the concept of objects.</p>
+                <br>
+                <p>In Developer Tools on index.html, move to the Console tab. Type <pre><code>document</code></pre> into the console and press ENTER. You will see that what is output is the same as what you see in the Elements tab.</p>
+                <img src="./images/output.png" alt="">
+                <br><br>
+                <h2>What is the Difference Between the DOM and HTML Source Code?</h2>
+                <p>Currently, with this example, it seems that HTML source code and the DOM are the exact same thing. There are two instances in which the browser-generated DOM will be different than HTML source code:
+                    <li>The DOM is modified by client-side JavaScript</li>
+                    <li>The browser automatically fixes errors in the source code</li>
+                </p>
+                <br>
+                <p>Let’s demonstrate how the DOM can be modified by client-side JavaScript. Type the following into the console:</p>
+                <pre><code>document.body;</code></pre>
+                <p>The console will respond with this output:</p>
+                <pre><code>Output
+                    &ltbody&gt
+                      &lth1&gtDocument Object Model&lt/h1&gt
+                    &ltbody&gt
+                </code></pre>
+                <p>document is an object, body is a property of that object that we have accessed with dot notation. Submitting document.body to the console outputs the body element and everything inside of it.
+
+                In the console, we can change some of the live properties of the body object on this website. We'll edit the style attribute, changing the background color to fuchsia. Type this into the console:</p>
+                <pre>
+                    <code>
+                        document.body.style.backgroundColor = 'fuchsia';
+                    </code>
+                </pre>
+                <p>After typing and submitting the above code, you’ll see the live update to the site, as the background color changes.</p>
+                <img src="./images/modifying-the-dom.png" alt="">
+
+                <br>
+                <p>Switching to the Elements tab, or typing document.body into the console again, you will see that the DOM has changed.
+                </p>
+                <pre>
+                    <code>
+                        Output
+                        &ltbody style="background-color: fuchsia;"&gt
+                        &lth1&gtDocument Object Model&lth1&gt
+                        &lt/body&gt
+                    </code>
+                </pre>
+                <p>The JavaScript code we typed, assigning fuchsia to the background color of the body, is now a part of the DOM.</p>
+
+                <h2>Conclusion</h2>
+                <p>In this tutorial, we defined the DOM, accessed the document object, used JavaScript and the console to update a property of the document object, and went over the difference between HTML source code and the DOM.
+                For more in-depth information on the DOM, review the Document Object Model (DOM) page on the Mozilla Developer Network.</p>
+            </div>
+            <hr>
+            
+        </div>
+    </div>
+</body>
+</html>
