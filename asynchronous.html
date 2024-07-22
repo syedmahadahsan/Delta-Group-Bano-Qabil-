@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Asynchronous JavaScript</h1>
+    <img src="/asynchronous js 2.png" alt="asynchronous js" height="300">
+    <br>
+    <p>After following this tutorial, you will be familiar with Asynchronous Javascript.</p>
+    <p>But before we dive into that, we need to make sure you understand what Synchronous code is and how it works.</p>
+    <hr>
+    <h1>What is Synchronous Code?</h1>
+    <p>Synchronous code is a type of code execution where operations are performed sequentially, with each operation waiting for the previous one to complete before starting.</p>
+    <p>Let's look at an example of this:</p>
+
+    <pre><code>
+        function task1() {
+            console.log("Task 1: Start");
+            for (let i = 0; i < 1000000000; i++) {} // Simulate a time-consuming task
+            console.log("Task 1: End");
+        }
+        
+        function task2() {
+            console.log("Task 2: Start");
+            console.log("Task 2: End");
+        }
+        
+        task1();
+        task2();
+            </code></pre>
+
+            <p>When the script runs, it first logs "Task 1: Start" to the console, then performs a time-consuming loop, and logs "Task 1: End". Immediately after, it logs "Task 2: Start" followed by "Task 2: End". The output sequence demonstrates synchronous execution, where task2 starts only after task1 has fully completed, resulting in the console output.</p>
+
+            <hr>
+
+            <h1>What is Asynchronous Code?</h1>
+            <p>Asynchronous code is a type of code execution where operations can run independently of the main program flow, allowing tasks to start and complete without waiting for previous tasks to finish.</p>
+            <p>Let's see an example of asynchronous code:</p>
+
+            <pre><code>
+                function task1() {
+                    console.log("Task 1: Start");
+                    setTimeout(() => {
+                        console.log("Task 1: End");
+                    }, 2000); // Simulates a 2-second delay
+                }
+                
+                function task2() {
+                    console.log("Task 2: Start");
+                    console.log("Task 2: End");
+                }
+                
+                task1();
+                task2();
+                    </code></pre>
+
+                    <p>When the script runs, it first logs "Task 1: Start" and then schedules "Task 1: End" to be logged after a 2-second delay. Immediately, it logs "Task 2: Start" and "Task 2: End". Finally, after the delay, "Task 1: End" is logged. This demonstrates asynchronous execution, with the output sequence.</p>
+
+                    <hr>
+
+                    <h1>How Promises Work in JavaScript</h1>
+                    <p>In JavaScript, a `Promise` is an object that represents the eventual completion or failure of an asynchronous operation and its resulting value. A promise is created using the `Promise` constructor, which takes a function called the executor. The executor function contains the asynchronous operation and has two arguments: `resolve` and `reject`. When the operation completes successfully, `resolve` is called with the result, and the promise transitions to the "fulfilled" state. If the operation fails, `reject` is called with the error, transitioning the promise to the "rejected" state. Promises have `then` and `catch` methods to handle fulfilled or rejected states respectively. `then` is used to specify what to do with the result when the promise is fulfilled, while `catch` handles any errors. This chaining allows for more readable and manageable asynchronous code compared to traditional callback functions.</p>
+                    <p>Now let's look at a code example:</p>
+
+                    <pre><code>
+                        function asyncOperation(success) {
+                            return new Promise((resolve, reject) => {
+                                setTimeout(() => {
+                                    if (success) {
+                                        resolve("Operation was successful!");
+                                    } else {
+                                        reject("Operation failed.");
+                                    }
+                                }, 2000); // Simulate a 2-second delay
+                            });
+                        }
+                        
+                        asyncOperation(true)
+                            .then(result => {
+                                console.log(result);
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+                        
+                        asyncOperation(false)
+                            .then(result => {
+                                console.log(result);
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+                            </code></pre>
+
+                            <p>In this example, the `asyncOperation` function simulates an asynchronous task using a promise that resolves or rejects after a 2-second delay based on the `success` argument. When called with `true`, the promise resolves successfully, logging "Operation was successful!" to the console. When called with `false`, the promise rejects, logging "Operation failed." This demonstrates how promises handle asynchronous operations by chaining `then` to process successful results and `catch` to handle errors, allowing for clean and manageable asynchronous code.</p>
+                            <img src="/promise work js.png" alt="promise work" height="300">
+
+                            <h2>How to Consume Promises</h2>
+                            <p>To consume promises in JavaScript, use the `then` method to handle a promise's successful resolution and the `catch` method to handle any errors. After a promise is created and executed, call `then` to specify what should happen when the promise is fulfilled, receiving the result as an argument. Chain `catch` to handle any errors if the promise is rejected. This chaining allows for sequential handling of asynchronous operations and their results, making code more readable and manageable.</p>
+                            <p>Let's continue using the above example to understand how we can consume a promise.</p>
+
+                            <pre><code>
+                                function asyncOperation(success) {
+                                    return new Promise((resolve, reject) => {
+                                        setTimeout(() => {
+                                            if (success) {
+                                                resolve("Operation was successful!");
+                                            } else {
+                                                reject("Operation failed.");
+                                            }
+                                        }, 2000); // Simulate a 2-second delay
+                                    });
+                                }
+                                
+                                // Consuming the promise with .then() and .catch()
+                                asyncOperation(true)
+                                    .then(result => {
+                                        console.log(result); // Logs success message
+                                    })
+                                    .catch(error => {
+                                        console.error(error); // Handles any error
+                                    });
+                                
+                                asyncOperation(false)
+                                    .then(result => {
+                                        console.log(result); // This will not run
+                                    })
+                                    .catch(error => {
+                                        console.error(error); // Logs failure message
+                                    });
+                                    </code></pre>
+
+                                    <p>In this example, promises are consumed using `.then()` and `.catch()`. When `asyncOperation(true)` is called, the promise resolves successfully after a 2-second delay, logging "Operation was successful!" via `.then()`. When `asyncOperation(false)` is called, the promise rejects, and the error is caught and logged as "Operation failed." via `.catch()`. This demonstrates handling asynchronous results and errors in a clear and manageable way.</p>
+                                    <img src="/states of a promise.png" alt="states of a promise" height="300">
+</body>
+</html>
